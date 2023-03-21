@@ -4,7 +4,34 @@ internal class Program
 {
     public static void Main(string[] args)
     {
-        var persons = File
+        var persons = Load();
+
+        var adults = GetAllAdults(persons);
+        var children = GetAllChildren(persons);
+
+        PrintPersonList(adults, "Erwachsene");
+        PrintPersonList(children, "Kinder");
+    }
+
+    private static void PrintPersonList(List<Person> person, string title)
+    {
+        Console.WriteLine($"## {title} ({person.Count}) ##");
+        person.ToList().ForEach(p => Console.WriteLine(p.Name));
+    }
+
+    private static List<Person> GetAllChildren(List<Person> persons)
+    {
+        return persons.Where(p => p.Age < 18).ToList();
+    }
+
+    private static List<Person> GetAllAdults(List<Person> persons)
+    {
+        return persons.Where(p => p.Age >= 18).ToList();
+    }
+
+    private static List<Person> Load()
+    {
+        return File
             .ReadAllLines("data.csv")
             .Select(l => l.Split(","))
             .Select(p => new Person
@@ -14,14 +41,5 @@ internal class Program
                 Age = int.Parse(p[2])
             })
             .ToList();
-
-        var adults = persons.Where(p => p.Age >= 18).ToList();
-        var children = persons.Where(p => p.Age < 18).ToList();
-
-        Console.WriteLine($"## Erwachsene ({adults.Count}) ##");
-        adults.ToList().ForEach(p => Console.WriteLine(p.Name));
-
-        Console.WriteLine($"## Kinder ({children.Count}) ##");
-        children.ToList().ForEach(c => Console.WriteLine(c.Name));
     }
 }
