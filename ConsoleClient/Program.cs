@@ -1,13 +1,14 @@
 ﻿namespace PersonManagerApp.ConsoleClient;
 
+
 internal class Program
 {
     public static void Main(string[] args)
     {
-        var persons = Load();
+        var manager = new PersonManager();
 
-        var adults = GetAllAdults(persons);
-        var children = GetAllChildren(persons);
+        var adults = manager.GetAllAdults();
+        var children = manager.GetAllChildren();
 
         PrintPersonList(adults, "Erwachsene");
         PrintPersonList(children, "Kinder");
@@ -18,18 +19,31 @@ internal class Program
         Console.WriteLine($"## {title} ({person.Count}) ##");
         person.ToList().ForEach(p => Console.WriteLine(p.Name));
     }
+}
 
-    private static List<Person> GetAllChildren(List<Person> persons)
+internal class PersonManager
+{
+    private readonly PersonRepository _repository;
+
+    public PersonManager()
     {
-        return persons.Where(p => p.Age < 18).ToList();
+        _repository = new PersonRepository();
     }
 
-    private static List<Person> GetAllAdults(List<Person> persons)
+    public List<Person> GetAllChildren()
     {
-        return persons.Where(p => p.Age >= 18).ToList();
+        return _repository.Load().Where(p => p.Age < 18).ToList();
     }
 
-    private static List<Person> Load()
+    public List<Person> GetAllAdults()
+    {
+        return _repository.Load().Where(p => p.Age >= 18).ToList();
+    }
+}
+
+internal class PersonRepository
+{
+    public List<Person> Load()
     {
         return File
             .ReadAllLines("data.csv")
