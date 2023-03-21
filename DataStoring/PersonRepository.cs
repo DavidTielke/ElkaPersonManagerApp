@@ -1,6 +1,6 @@
 ﻿namespace PersonManagerApp.ConsoleClient;
 
-internal class PersonRepository
+public class PersonRepository
 {
     private readonly PersonParser _personParser;
 

@@ -1,6 +1,6 @@
 ﻿namespace PersonManagerApp.ConsoleClient;
 
-internal class PersonManager
+public class PersonManager
 {
     private readonly PersonRepository _repository;
 
