@@ -1,4 +1,7 @@
-﻿namespace PersonManagerApp.ConsoleClient;
+﻿using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("UnitTests")]
+namespace PersonManagerApp.ConsoleClient;
 
 public class Person
 {
