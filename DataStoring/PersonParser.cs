@@ -1,6 +1,11 @@
 ﻿namespace PersonManagerApp.ConsoleClient;
 
-public class PersonParser
+public interface IPersonParser
+{
+    List<Person> Parse(string[] lines);
+}
+
+public class PersonParser : IPersonParser
 {
     public List<Person> Parse(string[] lines)
     {
@@ -9,7 +14,7 @@ public class PersonParser
             throw new ArgumentNullException(nameof(lines));
         }
 
-        for (int i = 0; i < lines.Length; i++)
+        for (var i = 0; i < lines.Length; i++)
         {
             var count = lines[i].Split(",").Length;
             if (count != 3)

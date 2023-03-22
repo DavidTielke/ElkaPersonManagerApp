@@ -1,15 +1,30 @@
 ﻿namespace PersonManagerApp.ConsoleClient;
 
-public class PersonRepository
+public class PersonRepository : IPersonRepository
 {
-    private readonly PersonParser _personParser;
+    private readonly IPersonParser _personParser;
 
-    public PersonRepository()
+    public PersonRepository(IPersonParser personParser)
     {
-        _personParser = new PersonParser();
+        _personParser = personParser;
     }
 
     public void Insert(Person person)
+    {
+        AssertForInsert(person);
+
+        var stringData = $"\n{person.Id},{person.Name},{person.Age}";
+        File.AppendAllLines("data.csv", new[] { stringData });
+    }
+
+    public List<Person> Load()
+    {
+        var lines = File.ReadAllLines("data.csv");
+        var persons = _personParser.Parse(lines);
+        return persons;
+    }
+
+    private void AssertForInsert(Person person)
     {
         if (person == null)
         {
@@ -34,15 +49,5 @@ public class PersonRepository
         {
             throw new InvalidOperationException("Can't add person with an already existing id to the store");
         }
-
-        var stringData = $"{person.Id},{person.Name},{person.Age}";
-        File.AppendAllLines("data.csv", new[] { stringData });
-    }
-
-    public List<Person> Load()
-    {
-        var lines = File.ReadAllLines("data.csv");
-        var persons = _personParser.Parse(lines);
-        return persons;
     }
 }

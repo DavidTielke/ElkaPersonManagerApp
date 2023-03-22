@@ -1,12 +1,30 @@
 ﻿namespace PersonManagerApp.ConsoleClient;
 
-public class PersonManager
+public class PersonManager : IPersonManager
 {
-    private readonly PersonRepository _repository;
+    private readonly IPersonRepository _repository;
 
-    public PersonManager()
+    public PersonManager(IPersonRepository repository)
     {
-        _repository = new PersonRepository();
+        _repository = repository;
+    }
+
+    public void Add(Person person)
+    {
+        if (person == null)
+        {
+            throw new ArgumentNullException(nameof(person));
+        }
+
+        var nameIsForbidden = person.Name == "Otto";
+        if (nameIsForbidden)
+        {
+            throw new InvalidOperationException("Cant persons with name otto");
+        }
+
+        // logging
+
+        _repository.Insert(person);
     }
 
     public List<Person> GetAllChildren()

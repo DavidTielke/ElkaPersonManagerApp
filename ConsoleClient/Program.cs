@@ -4,16 +4,19 @@ internal class Program
 {
     public static void Main(string[] args)
     {
-        var repo = new PersonRepository();
         var person = new Person
         {
             Id = 4711,
             Name = "Hasi",
             Age = 10
         };
-        repo.Insert(person);
 
-        var manager = new PersonManager();
+        var parser = new PersonParser();
+        var repo = new PersonRepository(parser);
+
+        IPersonManager manager = new PersonManager(repo);
+
+        manager.Add(person);
 
         var adults = manager.GetAllAdults();
         var children = manager.GetAllChildren();
