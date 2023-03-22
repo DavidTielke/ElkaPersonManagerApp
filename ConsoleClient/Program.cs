@@ -14,7 +14,7 @@ internal class Program
             Age = 10
         };
 
-       var kernel = new KernelFactory
+        var kernel = new KernelFactory().Create();
 
         var manager = kernel.Get<IPersonManager>();
 
