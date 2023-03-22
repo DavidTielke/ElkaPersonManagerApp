@@ -1,4 +1,6 @@
-﻿namespace PersonManagerApp.ConsoleClient;
+﻿using DavidTielke.PersonManagerApp.CrossCutting.DataModel;
+
+namespace DavidTielke.PersonManagerApp.Data.DataStoring;
 
 public interface IPersonParser
 {

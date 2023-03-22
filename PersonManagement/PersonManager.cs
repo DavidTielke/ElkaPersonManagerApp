@@ -1,4 +1,7 @@
-﻿namespace PersonManagerApp.ConsoleClient;
+﻿using DavidTielke.PersonManagerApp.CrossCutting.DataModel;
+using DavidTielke.PersonManagerApp.Data.DataStoring;
+
+namespace DavidTielke.PersonManagerApp.Logic.PersonManagement;
 
 public interface IAlgo
 {

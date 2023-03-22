@@ -1,28 +1,9 @@
-﻿using PersonManagerApp.ConsoleClient;
+﻿using DavidTielke.PersonManagerApp.CrossCutting.DataModel;
+using DavidTielke.PersonManagerApp.Logic.PersonManagement;
 
 namespace UnitTests;
 
 // MOQ
-public class PersonRepositoryStub : IPersonRepository
-{
-    public bool InsertWasCalled { get; set; }
-
-    public void Insert(Person person)
-    {
-        InsertWasCalled = true;
-    }
-
-    public List<Person> Load()
-    {
-        return new List<Person>
-        {
-            new(1, "Erwachsener1", 18),
-            new(2, "Erwachsener2", 19),
-            new(3, "Erwachsener2", 17),
-            new(4, "Erwachsener2", 0)
-        };
-    }
-}
 
 [TestClass]
 public class PersonManagerTests

@@ -2,7 +2,7 @@
 
 [assembly: InternalsVisibleTo("UnitTests")]
 
-namespace PersonManagerApp.ConsoleClient;
+namespace DavidTielke.PersonManagerApp.CrossCutting.DataModel;
 
 public class Person
 {

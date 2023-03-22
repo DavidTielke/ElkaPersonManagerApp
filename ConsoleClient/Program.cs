@@ -1,7 +1,9 @@
-﻿using Mappings;
+﻿using DavidTielke.PersonManagerApp.CrossCutting.DataModel;
+using DavidTielke.PersonManagerApp.Infrastructure.Mappings;
+using DavidTielke.PersonManagerApp.Logic.PersonManagement;
 using Ninject;
 
-namespace PersonManagerApp.ConsoleClient;
+namespace DavidTielke.PersonManagerApp.UI.ConsoleClient;
 
 internal class Program
 {

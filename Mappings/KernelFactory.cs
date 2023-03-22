@@ -1,7 +1,8 @@
-﻿using Ninject;
-using PersonManagerApp.ConsoleClient;
+﻿using DavidTielke.PersonManagerApp.Data.DataStoring;
+using DavidTielke.PersonManagerApp.Logic.PersonManagement;
+using Ninject;
 
-namespace Mappings;
+namespace DavidTielke.PersonManagerApp.Infrastructure.Mappings;
 
 public class KernelFactory
 {
