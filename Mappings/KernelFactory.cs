@@ -1,4 +1,5 @@
-﻿using DavidTielke.PersonManagerApp.Data.DataStoring;
+﻿using Configuration;
+using DavidTielke.PersonManagerApp.Data.DataStoring;
 using DavidTielke.PersonManagerApp.Logic.PersonManagement;
 using Ninject;
 
@@ -10,6 +11,7 @@ public class KernelFactory
     {
         var kernel = new StandardKernel();
 
+        kernel.Bind<IConfigurator>().To<Configurator>().InSingletonScope();
         kernel.Bind<IPersonManager>().To<PersonManager>();
         kernel.Bind<IPersonRepository>().To<PersonRepository>();
         kernel.Bind<IPersonParser>().To<PersonParser>();

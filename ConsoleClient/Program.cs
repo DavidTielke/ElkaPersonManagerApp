@@ -1,4 +1,5 @@
-﻿using DavidTielke.PersonManagerApp.CrossCutting.DataModel;
+﻿using Configuration;
+using DavidTielke.PersonManagerApp.CrossCutting.DataModel;
 using DavidTielke.PersonManagerApp.Infrastructure.Mappings;
 using DavidTielke.PersonManagerApp.Logic.PersonManagement;
 using Ninject;
@@ -17,6 +18,9 @@ internal class Program
         };
 
         var kernel = new KernelFactory().Create();
+
+        var config = kernel.Get<IConfigurator>();
+        config.Set("AgeThreshold", 10);
 
         var manager = kernel.Get<IPersonManager>();
 
