@@ -1,4 +1,5 @@
-﻿using Ninject;
+﻿using Mappings;
+using Ninject;
 
 namespace PersonManagerApp.ConsoleClient;
 
@@ -13,10 +14,7 @@ internal class Program
             Age = 10
         };
 
-        var kernel = new StandardKernel();
-        kernel.Bind<IPersonManager>().To<PersonManager>();
-        kernel.Bind<IPersonRepository>().To<PersonRepository>();
-        kernel.Bind<IPersonParser>().To<PersonParser>();
+       var kernel = new KernelFactory
 
         var manager = kernel.Get<IPersonManager>();
 

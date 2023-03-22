@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -12,15 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataModel\DataModel.csproj" />
-    <ProjectReference Include="..\Mappings\Mappings.csproj" />
     <ProjectReference Include="..\PersonManagement\PersonManagement.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="data.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>
