@@ -2,6 +2,7 @@
 
 namespace UnitTests;
 
+// MOQ
 public class PersonRepositoryStub : IPersonRepository
 {
     public bool InsertWasCalled { get; set; }

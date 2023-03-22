@@ -1,4 +1,6 @@
-﻿namespace PersonManagerApp.ConsoleClient;
+﻿using Ninject;
+
+namespace PersonManagerApp.ConsoleClient;
 
 internal class Program
 {
@@ -11,10 +13,12 @@ internal class Program
             Age = 10
         };
 
-        var parser = new PersonParser();
-        var repo = new PersonRepository(parser);
+        var kernel = new StandardKernel();
+        kernel.Bind<IPersonManager>().To<PersonManager>();
+        kernel.Bind<IPersonRepository>().To<PersonRepository>();
+        kernel.Bind<IPersonParser>().To<PersonParser>();
 
-        IPersonManager manager = new PersonManager(repo);
+        var manager = kernel.Get<IPersonManager>();
 
         manager.Add(person);
 
